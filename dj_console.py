@@ -1,3 +1,4 @@
+from monitor_ui import abrir_ui
 import threading
 import time
 import os
@@ -127,6 +128,9 @@ def main():
             instruments[name] = Instrument(name, file_path, bpm=bpm)
             instruments[name].start()
             instruments[name].pause()
+
+    monitor_thread = threading.Thread(target=abrir_ui, args=(instruments,), daemon=True)
+    monitor_thread.start()
 
     try:
         while True:
