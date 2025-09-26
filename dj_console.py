@@ -6,10 +6,9 @@ import pygame
 import numpy as np
 from scipy.io.wavfile import write
 
-# Inicializa mixer do pygame
 pygame.mixer.init()
 
-# --- Funções para gerar sons ---
+
 def gerar_tom(nome, freq, duracao=0.5, samplerate=44100):
     t = np.linspace(0, duracao, int(samplerate*duracao), False)
     onda = 0.5 * np.sin(2 * np.pi * freq * t)
@@ -31,7 +30,7 @@ def gerar_sons_faltantes():
             print(f"🎵 {nome}.wav gerado")
     print("✅ Sons prontos!")
 
-# --- Classe Instrumento ---
+
 class Instrument:
     def __init__(self, name, file_path, bpm=60):
         self.name = name
@@ -83,7 +82,6 @@ class Instrument:
             self.volume = max(0.0, min(1.0, float(vol)))
             if self.sound: self.sound.set_volume(self.volume)
 
-# --- Função para mostrar status ---
 def mostrar_status(instruments):
     print("\n" + "="*50)
     print("=== STATUS DJ MODE ===")
@@ -93,7 +91,6 @@ def mostrar_status(instruments):
         print(f"- {name:12} | {status:8} | BPM: {inst.bpm:3} | Vol: {inst.volume:.2f}")
     print("="*50)
 
-# --- Função para mostrar ajuda ---
 def mostrar_ajuda():
     print("\n=== Comandos disponíveis ===")
     print("status                     → mostra status dos instrumentos")
@@ -109,7 +106,7 @@ def mostrar_ajuda():
     print("sair                       → encerra o programa")
     print("="*50)
 
-# --- Programa principal ---
+
 def main():
     gerar_sons_faltantes()
     
